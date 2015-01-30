@@ -1,29 +1,34 @@
 #!/usr/bin/env python
 import random, os, sys
 
+# Prompt Character
 tch = "> "
 
+# Some global variables
 words = []
 wordlist = open('wordlist.txt', 'r')
 underscore = []
 guessed_letters = ["Guessed Letters: "]
 bools = []
 
+# Clears the screen
 def clear():
     os.system("clear")
 
+# Prompt that's shown upon program start-up
 def init():
     clear()
     print tch + "Welcome to Hangman! To begin a new game, type 'start', or type 'exit' to exit this program."
     stdin = raw_input(tch)
     verify_input(stdin)
 
+# The game 'loop'
 def main():
     clear()
     print tch + "Hangman, the classic game."
     print tch + "Enter some letters."
-    print print_underscores()
-    print print_guessed_letters()
+    print get_underscores()
+    print get_guessed_letters()
     stdin = get_stdin()
     if len(stdin) > 2:
         if stdin == "exit":
@@ -37,14 +42,12 @@ def main():
         check_letter(stdin, word)
         main()
 
+# Shutsdown the program
 def die():
     clear()
     sys.exit()
 
-def help():
-    print tch + "\n" + tch + "\tstart :: Start a new game\n" + tch + "\texit :: Exit Hangman program\n" + tch + "\thelp or '?' :: Display this help dialog\n" + tch
-    main()
-
+# Have the guessed all the letters in a the word?
 def complete():
     string = str(print_underscores())
     string = string.replace("[", "")
@@ -58,6 +61,7 @@ def complete():
         ret = False
     return ret
 
+# Get a word from the wordlist
 def choose_word():
     for line in wordlist.readlines():
         lines = line.replace("\n", "")
@@ -66,12 +70,14 @@ def choose_word():
     wordlist.close()
     return words[random.randint(0, len(words) - 1)]
 
+# Checks if an inputted letter is in the word
 def check_letter(l, w):
     for i in range(0, len(bools)):
         if word[i] == l:
             bools[i] = True
     guessed_letters.append(l)
 
+# Starts a new game
 def new_game():
     clear()
     print tch + "New game started..."
@@ -82,14 +88,16 @@ def new_game():
         bools.append(False)
     main()
 
-def print_underscores():
+# Formats and returns an array of underscores ('_') and correctly guessed letters
+def get_underscores():
     indicies = []
     for i in range(0, len(bools)):
         if bools[i] == True:
             underscore[i] = word[i]
     return underscore
 
-def print_guessed_letters():
+# Formats and returns an array of guessed letters
+def get_guessed_letters():
     string = str(guessed_letters)
     string = string.replace("[", "")
     string = string.replace("]", "")
@@ -97,6 +105,7 @@ def print_guessed_letters():
     string = string.replace(",", " ")
     return string
 
+# Gets input from the user if the word is completely guessed
 def get_stdin():
     if complete():
         ret = "complete"
@@ -104,6 +113,7 @@ def get_stdin():
         ret = raw_input(tch).lower()
     return ret
 
+# Checks if inputted text is an in-game command
 def verify_input(stdin):
     new_stdin = str(stdin).lower()
     if new_stdin == "start":
@@ -115,4 +125,5 @@ def verify_input(stdin):
     else:
         print tch + "Unrecgonized input."
 
+# Start the game...
 init()
