@@ -70,12 +70,12 @@ def new_game():
     main()
 
 def print_underscores():
-    indicies = []
+    indices = []
     for i in bools:
         if i == True:
-            indicies.append(bools.index(i))
-        print indicies
-    for i in indicies:
+            indices.append(bools.index(i))
+        print indices
+    for i in indices:
         underscore[i] = word[i]
     return underscore
 
