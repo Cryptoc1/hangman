@@ -1,17 +1,4 @@
 #!/usr/bin/env python
-
-################################################################
-################################################################
-###                                                          ###
-###     Hangman by Samuel Steele                             ###
-###     Hangman is a simple python game that runs in the     ###
-###     Terminal. The rules are the same as the classic      ###
-###     game.       Happy Coding,                            ###
-###                     -Cryptoc1                            ###
-###                                                          ###
-################################################################
-################################################################
-
 import random, os, sys
 
 tch = "> "
