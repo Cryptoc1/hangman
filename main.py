@@ -6,7 +6,8 @@ tch = "> "
 
 # Some global variables
 words = []
-wordlist = open('wordlist.txt', 'r')
+# Change the path below to wherever you cloned the wordlist
+wordlist = open('~/Developer/python/Hangman/wordlist.txt', 'r')
 underscore = []
 guessed_letters = ["Guessed Letters: "]
 bools = []
@@ -49,7 +50,7 @@ def die():
 
 # Have the guessed all the letters in a the word?
 def complete():
-    string = str(print_underscores())
+    string = str(get_underscores())
     string = string.replace("[", "")
     string = string.replace("]", "")
     string = string.replace("'", "")
