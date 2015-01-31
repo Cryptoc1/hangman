@@ -7,7 +7,7 @@ tch = "> "
 # Some global variables
 words = []
 # Change the path below to wherever you cloned the wordlist
-wordlist = open('~/Developer/python/Hangman/wordlist.txt', 'r')
+wordlist = open('/home/cryptoc1/Developer/python/Hangman/wordlist.txt', 'r')
 underscore = []
 guessed_letters = ["Guessed Letters: "]
 bools = []
